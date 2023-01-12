@@ -207,11 +207,10 @@ class TableClass {
             }
         }
     }
-
 }
 
 let loadFormData =():void=> {
-    let loadData =document.getElementById('loadData');
+    let loadData = document.getElementById('loadData');
     loadData.innerHTML ='RefreshData';
 
     let table = new TableClass();
