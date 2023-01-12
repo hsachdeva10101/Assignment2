@@ -97,7 +97,6 @@ class TableClass {
                 tCell.classList.add('tableCell');
             }
 
-
             let edit_delCell = tr.insertCell(-1);
 
             // edit button
@@ -156,40 +155,40 @@ class TableClass {
             }
 
             // toggle buttons
-            for (let j = 0; j < editElement.querySelector('#saveCnclEdtClr').children.length; j++) {
-                if (editElement.querySelector('#saveCnclEdtClr').children[j].style.display === 'none') {
-                    editElement.querySelector('#saveCnclEdtClr').children[j].style.display = 'block';
+            for (let i = 0; i < editElement.querySelector('#saveCnclEdtClr').children.length; i++) {
+                if (editElement.querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
+                    editElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
                 } else {
-                    editElement.querySelector('#saveCnclEdtClr').children[j].style.display = 'none';
+                    editElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
                 }
             }
         }
     }
 
     // check
-    cancel(id:string, tableHeader:string|string[], tableData:object|any) {
+    cancel(id:string, tableHeader:string|string[], tableData:object) {
         return (): void=> {
             let cancelElement:any = document.getElementById(id) ;
             let cancelElementIndex = cancelElement.rowIndex;
 
-            for (let i = 0; i < tableData.length; i++) {
+            for (let i = 0; i < Object.keys(tableData).length; i++) {
                 for (let j = 0; j < tableHeader.length; i++) {
                     cancelElement.querySelectorAll('.tableCell')[j].innerHTML = tableData[cancelElementIndex - 1][tableHeader[j]];
                 }
             }
 
-            for (let j = 0; j < cancelElement.querySelector('#saveCnclEdtClr').children.length; j++) {
-                if (cancelElement.querySelector('#saveCnclEdtClr').children[j].style.display === 'none') {
-                    cancelElement.querySelector('#saveCnclEdtClr').children[j].style.display = 'block';
+            for (let i = 0; i < cancelElement.querySelector('#saveCnclEdtClr').children.length; i++) {
+                if (cancelElement.querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
+                    cancelElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
                 } else {
-                    cancelElement.querySelector('#saveCnclEdtClr').children[j].style.display = 'none';
+                    cancelElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
                 }
             }
         }
     }
 
     save(id:string, tableHeader:string|string[]) {
-        return (): void=>{
+        return (): void=> {
             let saveElement:any = document.getElementById(id);
 
             // select all cells and make editable false
@@ -198,11 +197,11 @@ class TableClass {
                 getCell.contentEditable = false;
             }
 
-            for (let j = 0; j < saveElement.querySelector('#saveCnclEdtClr').children.length; j++) {
-                if (saveElement.querySelector('#saveCnclEdtClr').children[j].style.display === 'none') {
-                    saveElement.querySelector('#saveCnclEdtClr').children[j].style.display = 'block';
+            for (let i = 0; i < saveElement.querySelector('#saveCnclEdtClr').children.length; i++) {
+                if (saveElement.querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
+                    saveElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
                 } else {
-                    saveElement.querySelector('#saveCnclEdtClr').children[j].style.display = 'none';
+                    saveElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
                 }
             }
         }

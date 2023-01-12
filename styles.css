@@ -24,6 +24,13 @@ button {
     font-weight: bold;
 }
 
+#form {
+    text-align: left;
+    width:95%;
+    border: none;
+    outline: none;
+}
+
 #Button {
     background-color: #ddd;
     border: none;
