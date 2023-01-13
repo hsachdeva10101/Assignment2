@@ -146,30 +146,38 @@ class TableClass {
         // select all cells and make editable true
         return (): void => {
             // just suppressed errors: not clear what to do
-            let editElement:any = document.getElementById(id);
+            let editElement = document.getElementById(id);
 
 
             for (let i = 0; i < tableHeader.length; i++) {
                 let getCell = editElement.querySelectorAll('.tableCell')[i];
-                getCell.contentEditable = true;
+                for(let j = 0; j < Object.keys(getCell).length; j++) {
+                    getCell[j].contentEditable = true;
+                }
             }
 
             // toggle buttons
             for (let i = 0; i < editElement.querySelector('#saveCnclEdtClr').children.length; i++) {
-                if (editElement.querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
-                    editElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
+                if (editElement[i].querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
+                    editElement[i].querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
                 } else {
-                    editElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
+                    editElement[i].querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
                 }
             }
         }
     }
 
+
+    // Check line 171 if it does not work
     // check
     cancel(id:string, tableHeader:string|string[], tableData:object) {
         return (): void=> {
-            let cancelElement:any = document.getElementById(id) ;
-            let cancelElementIndex = cancelElement.rowIndex;
+            let cancelElement:HTMLElement = document.getElementById(id);
+            let cancelElementIndex:number;
+            for(let i = 0; i < Object.keys(cancelElement).length; i++) {
+                cancelElementIndex = cancelElement[i].rowIndex;
+            }
+
 
             for (let i = 0; i < Object.keys(tableData).length; i++) {
                 for (let j = 0; j < tableHeader.length; i++) {
@@ -178,10 +186,10 @@ class TableClass {
             }
 
             for (let i = 0; i < cancelElement.querySelector('#saveCnclEdtClr').children.length; i++) {
-                if (cancelElement.querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
-                    cancelElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
+                if (cancelElement[i].querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
+                    cancelElement[i].querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
                 } else {
-                    cancelElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
+                    cancelElement[i].querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
                 }
             }
         }
@@ -189,19 +197,22 @@ class TableClass {
 
     save(id:string, tableHeader:string|string[]) {
         return (): void=> {
-            let saveElement:any = document.getElementById(id);
+            let saveElement: HTMLElement= document.getElementById(id);
 
             // select all cells and make editable false
             for (let i = 0; i < tableHeader.length; i++) {
                 let getCell = saveElement.querySelectorAll('.tableCell')[i];
-                getCell.contentEditable = false;
+                // loop j and get cell j
+                for(let j = 0; j < Object.keys(getCell).length; j++) {
+                    getCell[j].contentEditable = false
+                }
             }
 
             for (let i = 0; i < saveElement.querySelector('#saveCnclEdtClr').children.length; i++) {
-                if (saveElement.querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
-                    saveElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
+                if (saveElement[i].querySelector('#saveCnclEdtClr').children[i].style.display === 'none') {
+                    saveElement[i].querySelector('#saveCnclEdtClr').children[i].style.display = 'block';
                 } else {
-                    saveElement.querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
+                    saveElement[i].querySelector('#saveCnclEdtClr').children[i].style.display = 'none';
                 }
             }
         }
