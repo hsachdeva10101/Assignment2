@@ -1,9 +1,8 @@
 class DataLoader {
     getter():object {
-        let id = 1;
         return [
             {
-                "id": ++id,
+                "id": 1,
                 "First Name": "foo",
                 "Middle Name": "bar",
                 "Last Name": "baz",
@@ -13,7 +12,7 @@ class DataLoader {
                 "Address": "Chd"
             },
             {
-                "id": ++id,
+                "id": 2,
                 "First Name": "foo",
                 "Middle Name": "bar",
                 "Last Name": "baz",
@@ -23,7 +22,7 @@ class DataLoader {
                 "Address": "Chd"
             },
             {
-                "id": ++id,
+                "id": 3,
                 "First Name": "foo",
                 "Middle Name": "bar",
                 "Last Name": "baz",
@@ -42,7 +41,7 @@ class TableClass {
         let loadTable = document.getElementById('loadTable');
         loadTable.innerHTML = '';
 
-        let data =new DataLoader();
+        let data = new DataLoader();
         let tableData = data.getter();
 
         let tableHeader: string[] = [];
@@ -77,7 +76,6 @@ class TableClass {
         let actionBtn = thead_tr.insertCell(-1);
         actionBtn.classList.add('table-action');
         actionBtn.innerHTML = `<strong>Action</strong>`;
-
         MakeTable.append(thead);
 
         // table body
@@ -128,9 +126,7 @@ class TableClass {
             cancelButton.classList.add('btn-info');
             cancelButton.addEventListener('click', this.cancel(tableRowId, tableHeader, tableData))
             edit_delCell.append(cancelButton);
-
         }
-
     }
 
     delete(id: string) {
@@ -140,14 +136,10 @@ class TableClass {
         }
     }
 
-    // later
     edit(id:string, tableHeader: string | string[])  {
-
-        // select all cells and make editable true
         return (): void => {
             // just suppressed errors: not clear what to do
             let editElement = document.getElementById(id);
-
 
             for (let i = 0; i < tableHeader.length; i++) {
                 let getCell = editElement.querySelectorAll('.tableCell')[i];
@@ -167,9 +159,7 @@ class TableClass {
         }
     }
 
-
     // Check line 171 if it does not work
-    // check
     cancel(id:string, tableHeader:string|string[], tableData:object) {
         return (): void=> {
             let cancelElement:HTMLElement = document.getElementById(id);
@@ -177,7 +167,6 @@ class TableClass {
             for(let i = 0; i < Object.keys(cancelElement).length; i++) {
                 cancelElementIndex = cancelElement[i].rowIndex;
             }
-
 
             for (let i = 0; i < Object.keys(tableData).length; i++) {
                 for (let j = 0; j < tableHeader.length; i++) {
